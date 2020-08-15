@@ -1,0 +1,25 @@
+<div class="login-set">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="title">Login</div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" >Username</label>
+                    <input type="username" class="form-control" name="username" [(ngModel)]="form.username" placeholder="Username">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" >Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="form.password" placeholder="password">
+                  </div>
+                </div>
+            </div>
+            <div class="login-btn"><button class="btn btn-success" (click)="onSubmit()">Login</button></div>
+            <div  class="register-text" [routerLink]="['/register']">
+              <button class="btn btn-light">Register</button>
+              </div>
+        </div>
+    </div>
+</div>

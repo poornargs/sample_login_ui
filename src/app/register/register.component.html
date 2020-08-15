@@ -1,0 +1,116 @@
+<div class="register-set">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="login-text pull-right" [routerLink]="['/login']">
+            <button class="btn btn-light">
+                Login
+            </button>
+        </div>
+                <div class="register-title">Register</div>
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">User Name</label>
+                            <input type="text" class="form-control" name="username" [(ngModel)]="registerData.username"
+                                placeholder="Enter User Name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Profile Pic</label>
+                            <input type="file" class="form-control height-45" accept=".png, .jpg, .jpeg"
+                                (change)="fileChangeEvent($event)" placeholder="Upload File">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">First Name</label>
+                            <input type="text" class="form-control" name="first_name"
+                                [(ngModel)]="registerData.first_name" placeholder="Enter First Name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Last Name</label>
+                            <input type="text" class="form-control" name="last_name"
+                                [(ngModel)]="registerData.last_name" placeholder="Enter Last Name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Mobile</label>
+                            <input type="number" class="form-control" name="mobile" [(ngModel)]="registerData.mobile"
+                                placeholder="Enter Mobile">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control" name="email" [(ngModel)]="registerData.email"
+                                placeholder="Enter Email">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Date Of Birth</label>
+                            <input type="date" class="form-control" name="dob" [(ngModel)]="registerData.dob"
+                                placeholder="Enter Date Of Birth">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" class="form-control" name="password"
+                                [(ngModel)]="registerData.password" placeholder="Enter Password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <textarea name="address" cols="30" rows="4" [(ngModel)]="registerData.address" class="form-control"
+                                placeholder="Enter Address"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Gender</label>
+                            <div class="radio-primary">
+                                <div class="radio">
+                                    <input type="radio" name="gender" class="margin-right-10" id="male"
+                                        [(ngModel)]="registerData.gender" checked value="Male">
+                                    <label for="" class="radio-label">Male</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="gender" class="margin-right-10" id="female"
+                                        [(ngModel)]="registerData.gender" value="Female">
+                                    <label for="" class="radio-label">Female</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            <div class="radio-primary">
+                                <div class="radio">
+                                    <input type="radio" name="status"  class="margin-right-10" id="active" value="active">
+                                    <label for="" class="radio-label">Active</label>
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" name="status" id="in-active" checked class="margin-right-10" value="in-active">
+                                    <label for="" class="radio-label">In-Active</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </form>
+            <div class="row pull-right">
+                    <button class="btn btn-success margin-right-5 btn-sm" 
+                        (click)="onSubmit()">Submit</button>
+                    <button class="btn btn-danger btn-sm" [routerLink]="['/login']">Cancel</button>
+                </div>
+        </div>
+    </div>
+</div>

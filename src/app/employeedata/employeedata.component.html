@@ -1,0 +1,205 @@
+<div class="table-set">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header add">
+                    <div class="title">
+                        <span class="card-add">
+                            <a class="card-btn-left" (click)="openForm('add', null)"
+                                data-toggle="modal" data-target="#AddData">
+                                <i class="fas fa-plus"></i>
+                        </a>
+                                <!-- <a class="btn btn-primary margin-right-5 btn-sm pull-right"
+                                    [routerLink]="['/login']">Logout</a> -->
+                        </span>
+                        <span class="card-main-title">Employee Details</span>
+                       
+                    </div>
+                    <div class="card-options">
+                        <button class="btn btn-outline-primary btn-sm margin-right-10" [routerLink]="['/login']">Logout</button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-bordered margin-bottom-0">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>DOB</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of Data">
+                                <td class="text-truncate">{{item.first_name}}</td>
+                                <td class="text-truncate">{{item.last_name}}</td>
+                                <td>{{item.gender}}</td>
+                                <td>{{item.mobile}}</td>
+                                <td class="text-truncate width-200">{{item.email}}</td>
+                                <td>{{item.dob | date}}</td>
+                                <td>{{item.status == 1 ? 'Active' : 'Inactive'}}</td>
+                                <td>
+                                    <div>
+                                        <button class="btn btn-primary btn-sm margin-right-5"
+                                            (click)="openForm('edit', item)" data-toggle="modal"
+                                            data-target="#AddData"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-danger btn-sm" (click)="deleteUserName = item.username"
+                                            data-toggle="modal" data-target="#DeleteData"><i
+                                                class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="modal" tabindex="-1" role="dialog" id="AddData">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{formType == 'add' ? 'Add' : 'Edit'}} Data</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">User Name</label>
+                                                <input [disabled]="formType == 'edit'" type="text" class="form-control"
+                                                    name="username" [(ngModel)]="formData.username"
+                                                    placeholder="Enter User Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Profile Pic</label>
+                                                {{imageError}}
+                                                <input type="file" class="form-control height-45"
+                                                    accept=".png, .jpg, .jpeg" (change)="fileChangeEvent($event)"
+                                                    placeholder="Upload File">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">First Name</label>
+                                                <input type="text" class="form-control" name="first_name"
+                                                    [(ngModel)]="formData.first_name" placeholder="Enter First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Last Name</label>
+                                                <input type="text" class="form-control" name="last_name"
+                                                    [(ngModel)]="formData.last_name" placeholder="Enter Last Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Mobile</label>
+                                                <input type="number" class="form-control" name="mobile"
+                                                    [(ngModel)]="formData.mobile" placeholder="Enter Mobile">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Email</label>
+                                                <input type="email" class="form-control" name="email"
+                                                    [(ngModel)]="formData.email" placeholder="Enter Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Date Of Birth</label>
+                                                <input type="date" class="form-control" name="dob"
+                                                    [(ngModel)]="formData.dob" placeholder="Enter Date Of Birth">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" *ngIf="formType == 'add'">
+                                            <div class="form-group">
+                                                <label for="">Password</label>
+                                                <input type="password" class="form-control" name="password"
+                                                    [(ngModel)]="formData.password" placeholder="Enter Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Address</label>
+                                                <textarea name="address" cols="30" rows="4"
+                                                    [(ngModel)]="formData.address" class="form-control"
+                                                    placeholder="Enter Address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Gender</label>
+                                                <div class="radio-primary">
+                                                    <div class="radio">
+                                                        <input type="radio" name="gender" class="margin-right-10"
+                                                            id="male" [(ngModel)]="formData.gender" checked
+                                                            value="Male">
+                                                        <label for="" class="radio-label">Male</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <input type="radio" name="gender" class="margin-right-10"
+                                                            id="female" [(ngModel)]="formData.gender" value="Female">
+                                                        <label for="" class="radio-label">Female</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" *ngIf="formType == 'edit'">
+                                            <div class="form-group">
+                                                <label for="">Status</label>
+                                                <div class="radio-primary">
+                                                    <div class="radio">
+                                                        <input type="radio" name="status" class="margin-right-10"
+                                                            id="active" [value]="1" [(ngModel)]="formData.status">
+                                                        <label for="" class="radio-label">Active</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <input type="radio" name="status" id="in-active"
+                                                            class="margin-right-10" [value]="0"
+                                                            [(ngModel)]="formData.status">
+                                                        <label for="" class="radio-label">In-Active</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSubmit()">Submit</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal" tabindex="-1" role="dialog" id="DeleteData">
+                    <div class="modal-dialog modal-sm lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure do you want to delete this Employee</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteUser()">Yes</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
